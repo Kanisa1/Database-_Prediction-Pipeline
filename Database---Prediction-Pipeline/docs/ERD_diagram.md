@@ -3,7 +3,7 @@
 ## Database Schema Overview
 
 The loan prediction system uses a hybrid approach with both MySQL (relational) and MongoDB (NoSQL) databases to store and manage loan application data, predictions, and analytics.
-Demonstrates a 1 to 1 relationship between and among each of the 4 tables(loan_applications, loan_features etc)
+Demonstrates a 1 to 1 relationship between and among each of the 4 tables(loan_applications, loan_features, loan_predictions and the loan_analytics tables)
 
 ## MySQL Database Schema
 
