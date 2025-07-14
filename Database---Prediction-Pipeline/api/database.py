@@ -387,26 +387,7 @@ class LoanFeature(Base):
         CheckConstraint('loan_id IS NOT NULL', name='check_loan_id_not_null'),
     )
 
-class LoanPrediction(Base):
-    __tablename__ = "loan_predictions"
-    
-    prediction_id = Column(Integer, primary_key=True, autoincrement=True)
-    loan_id = Column(String(20), ForeignKey("loan_applications.loan_id"), nullable=False)
-    predicted_status = Column(Enum('Approved', 'Rejected', name='predicted_status_enum'), nullable=False)
-    confidence_score = Column(DECIMAL(5, 4), nullable=False)
-    probability_approved = Column(DECIMAL(5, 4), nullable=False)
-    model_version = Column(String(20), default='v1.0')
-    prediction_created_at = Column(DateTime, default=func.now())
-    
-    # Relationships
-    loan_application = relationship("LoanApplication", back_populates="predictions", foreign_keys=[loan_id])
-    
-    # Constraints
-    __table_args__ = (
-        CheckConstraint('loan_id IS NOT NULL', name='check_loan_id_not_null'),
-        CheckConstraint('confidence_score >= 0 AND confidence_score <= 1', name='check_confidence_score_range'),
-        CheckConstraint('probability_approved >= 0 AND probability_approved <= 1', name='check_probability_approved_range'),
-    )
+
 
 class LoanAnalytics(Base):
     __tablename__ = "loan_analytics"
