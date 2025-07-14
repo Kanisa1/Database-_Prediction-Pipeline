@@ -1,0 +1,26 @@
+Loan-Prediction-Pipeline/
+├── database/
+│   ├── mysql/
+│   │   ├── schema.sql
+│   │   ├── stored_procedures.sql
+│   │   └── triggers.sql
+│   └── mongodb/
+│       ├── collections.js
+│       └── sample_data.js
+├── api/
+│   ├── main.py
+│   ├── models.py
+│   ├── database.py
+│   └── requirements.txt
+├── ml/
+│   ├── model_training.py
+│   ├── prediction_script.py
+│   └── loan_model.pkl
+├── docs/
+│   ├── ERD_diagram.md
+│   └── api_documentation.md
+├── data/
+│   └── loan_prediction.csv
+├── scripts/
+│   └── setup.py
+└── README.md 
