@@ -6,7 +6,7 @@ A comprehensive machine learning system for loan approval prediction using MySQL
 ## 🎯 Project Overview
 
 This project implements a complete loan prediction pipeline that includes:
-- **Database Design**: MySQL (relational) and MongoDB (NoSQL) hybrid approach
+- **Database Design**: MySQL (relational) and MongoDB (NoSQL) hybrid approach inform of collections.
 - **API Development**: FastAPI with full CRUD operations
 - **Machine Learning**: Random Forest classifier for loan approval prediction
 - **Data Pipeline**: End-to-end data processing and prediction workflow
