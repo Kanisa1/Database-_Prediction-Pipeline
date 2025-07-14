@@ -588,6 +588,75 @@ Database---Prediction-Pipeline/
 # Database---Prediction-Pipeline
 
 
+**The Entity Relationship Diagram**
+┌─────────────────────────────────────────────────────────────────┐
+│                        LOAN_APPLICATIONS                        │
+├─────────────────────────────────────────────────────────────────┤
+│ PK: loan_id (VARCHAR(20))                                       │
+│ gender (ENUM: Male, Female)                                     │
+│ married (ENUM: Yes, No)                                         │
+│ dependents (ENUM: 0, 1, 2, 3+)                                  │
+│ education (ENUM: Graduate, Not Graduate)                        │
+│ self_employed (ENUM: Yes, No)                                   │
+│ applicant_income (DECIMAL(10,2))                                │
+│ coapplicant_income (DECIMAL(10,2))                              │
+│ loan_amount (DECIMAL(10,2))                                     │
+│ loan_amount_term (INT)                                          │
+│ credit_history (TINYINT(1))                                     │
+│ property_area (ENUM: Urban, Semiurban, Rural)                   │
+│ loan_status (ENUM: Y, N)                                        │
+│ created_at (TIMESTAMP)                                          │
+│ updated_at (TIMESTAMP)                                          │
+└─────────────────────────────────────────────────────────────────┘
+                                        │
+                                        │ 1:1
+                                        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         LOAN_FEATURES                           │
+├─────────────────────────────────────────────────────────────────┤
+│ PK: feature_id (INT AUTO_INCREMENT)                             │
+│ FK: loan_id (VARCHAR(20)) → loan_applications.loan_id           │
+│ total_income (DECIMAL(10,2))                                    │
+│ income_ratio (DECIMAL(5,2))                                     │
+│ loan_to_income_ratio (DECIMAL(5,2))                             │
+│ has_coapplicant (BOOLEAN)                                       │
+│ is_graduate (BOOLEAN)                                           │
+│ is_self_employed (BOOLEAN)                                      │
+│ has_credit_history (BOOLEAN)                                    │
+│ feature_created_at (TIMESTAMP)                                  │
+└─────────────────────────────────────────────────────────────────┘
+                                        │
+                                        │ 1:1
+                                        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                       LOAN_PREDICTIONS                          │
+├─────────────────────────────────────────────────────────────────┤
+│ PK: prediction_id (INT AUTO_INCREMENT)                          │
+│ FK: loan_id (VARCHAR(20)) → loan_applications.loan_id           │
+│ predicted_status (ENUM: Approved, Rejected)                     │
+│ confidence_score (DECIMAL(5,4))                                 │
+│ probability_approved (DECIMAL(5,4))                             │
+│ model_version (VARCHAR(20))                                     │
+│ prediction_created_at (TIMESTAMP)                               │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                        LOAN_ANALYTICS                           │
+├─────────────────────────────────────────────────────────────────┤
+│ PK: analytics_id (INT AUTO_INCREMENT)                           │
+│ analysis_date (DATE) UNIQUE                                     │
+│ total_applications (INT)                                        │
+│ approved_loans (INT)                                            │
+│ rejected_loans (INT)                                            │
+│ approval_rate (DECIMAL(5,2))                                    │
+│ avg_applicant_income (DECIMAL(10,2))                            │
+│ avg_loan_amount (DECIMAL(10,2))                                 │
+│ gender_distribution (JSON)                                      │
+│ education_distribution (JSON)                                   │
+│ property_area_distribution (JSON)                               │
+│ analytics_created_at (TIMESTAMP)                                │
+└─────────────────────────────────────────────────────────────────┘
+
 #link to the dataset
 [https://www.kaggle.com/datasets/altruistdelhite04/loan-prediction-problem-dataset/data?select=train_u6lujuX_CVtuZ9i.csv](https://www.kaggle.com/datasets/altruistdelhite04/loan-prediction-problem-dataset/data?select=train_u6lujuX_CVtuZ9i.csv)
 >>>>>>> c3126528bfd51e4de46ddf94225f43ae386d3b9b
